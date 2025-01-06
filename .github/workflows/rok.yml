@@ -1,5 +1,5 @@
 
-name: Claim
+name: Gd
 
 on:
   push:
@@ -35,6 +35,7 @@ jobs:
         seleniumbase install chromedriver
     - name: Run Script
       run: |
-        python ck-proxy.py ${{ matrix.rangeIndex }}
+        ls -la
+        python gd.py ${{ matrix.rangeIndex }}
     - name: done
       run: exit
