@@ -44,6 +44,8 @@ def check_ip(sb):
         type_proxy = sb.get_text('td > span#type')
         print(f"{hostname} , {type_proxy}", file=sys.__stderr__)
 
+        sb.sleep(50)
+
         if "Good IP" in type_proxy:
             return {"status": True, "hostname": hostname, "country": country,"type": type_proxy}
         else:
@@ -69,7 +71,8 @@ def run_bot(data_proxy, index, job_number):
     proxy_ip = data_proxy[0]
     proxy_port = data_proxy[1]
 
-    proxy = f"socks5://{proxy_ip}:{proxy_port}"
+    proxy = f"{proxy_ip}:{proxy_port}"
+    socks = f"socks5://{proxy}"
 
     with SB(undetectable=True, xvfb=True, proxy=proxy) as sb:
         sb.maximize_window()
