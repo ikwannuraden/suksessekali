@@ -1,6 +1,7 @@
 from seleniumbase import *
 from supabase import create_client, Client
 import sys
+import csv
 import time
 from threading import Thread, Event
 
