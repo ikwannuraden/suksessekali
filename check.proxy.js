@@ -65,7 +65,7 @@ const checkProxy = async (proxy) => {
   }
 
   const readFileProxy = fs
-    .readFileSync(process.cwd() + "/proxy.txt", "utf-8")
+    .readFileSync(process.cwd() + "/proxy.csv", "utf-8")
     .split(/\r?\n/)
     .filter((n) => n);
 
