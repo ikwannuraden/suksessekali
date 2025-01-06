@@ -23,7 +23,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 def load_data(start_data, end_data):
 
     proxy = []
-    with open("./proxy.csv") as csv_proxy_file:
+    with open("proxy.csv") as csv_proxy_file:
         proxy = list(csv.reader(csv_proxy_file, delimiter=":"))
 
     line_count = 0
@@ -54,7 +54,7 @@ def insert_supabase(proxy, hostname, country, type, good):
     try:
         response = (
             supabase.table(SUPABASE_TABLE_NAME)
-            .insert({"proxy": proxy, "hostname": hostname, "country": country "type": type, "good": good})
+            .insert({"proxy": proxy, "hostname": hostname, "country": country, "type": type, "good": good})
             .execute()
         )
     except Exception as e:
