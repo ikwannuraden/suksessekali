@@ -82,8 +82,9 @@ def run_bot(data_proxy, index, job_number):
                 hostname = is_good["hostname"]
                 country = is_good["country"]
                 type_proxy = is_good["type"]
+                good = true
 
-                insert_supabase(proxy, hostname, country, type_proxy, true)
+                insert_supabase(proxy, hostname, country, type_proxy, good)
         except Exception as e:
             print(f"[Index #{index}] - TERJADI ERROR SAAT RUN :{e}", file=sys.__stderr__)
             sb.driver.quit()
