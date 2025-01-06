@@ -76,6 +76,8 @@ def run_bot(data_proxy, index, job_number):
         try:
             is_good = check_ip(sb)
 
+            print(f"is_good {is_good}", file=sys.__stderr__)
+
             if is_good["status"]:
                 hostname = is_good["hostname"]
                 country = is_good["country"]
@@ -83,7 +85,7 @@ def run_bot(data_proxy, index, job_number):
 
                 insert_supabase(proxy, hostname, country, type_proxy, true)
         except Exception as e:
-            print(f"[Index #{index}] - TERJADI ERROR SAAT RUN :{e}")
+            print(f"[Index #{index}] - TERJADI ERROR SAAT RUN :{e}", file=sys.__stderr__)
             sb.driver.quit()
 
 def main():
