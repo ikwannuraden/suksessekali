@@ -35,7 +35,6 @@ jobs:
         seleniumbase install chromedriver
     - name: Run Script
       run: |
-        cd wkwk
         python ck-proxy.py ${{ matrix.rangeIndex }}
     - name: done
       run: exit
