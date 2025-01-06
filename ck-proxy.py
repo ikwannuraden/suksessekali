@@ -2,6 +2,16 @@ from seleniumbase import *
 from supabase import create_client, Client
 import sys
 import time
+from threading import Thread, Event
+
+from concurrent.futures import (
+    ProcessPoolExecutor,
+    ThreadPoolExecutor,
+    wait,
+    FIRST_EXCEPTION,
+)
+
+sys.argv.append("-n") 
 
 
 SUPABASE_URL = "https://yegmcsxgxkbqbjdmsvfm.supabase.co"
