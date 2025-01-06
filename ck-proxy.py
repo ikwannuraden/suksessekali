@@ -23,7 +23,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 def load_data(start_data, end_data):
 
     proxy = []
-    with open("proxy.csv") as csv_proxy_file:
+    with open("./proxy.csv") as csv_proxy_file:
         proxy = list(csv.reader(csv_proxy_file, delimiter=":"))
 
     line_count = 0
