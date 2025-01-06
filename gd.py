@@ -47,7 +47,7 @@ def check_ip(sb):
         if "Good IP" in type_proxy:
             return {"status": True, "hostname": hostname, "country": country,"type": type_proxy}
         else:
-            return {"status": False, "hostname": is_hostname, "country": country,"type": type_proxy}
+            return {"status": False, "hostname": hostname, "country": country,"type": type_proxy}
     else:
         return {"status": False, "data": ""}
 
