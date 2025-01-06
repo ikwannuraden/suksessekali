@@ -1,0 +1,41 @@
+
+name: Claim
+
+on:
+  push:
+    branches: ["maino"]
+
+jobs:
+  build:
+    env:
+      PY_COLORS: "1"
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        rangeIndex: [0 5 1,5 10 2,10 15 3,15 20 4,20 25 5,25 30 6,30 35 7,35 40 8,40 45 9,45 50 10,50 55 11,55 60 12,60 65 13,65 70 14,70 75 15,75 80 16,80 85 17,85 90 18,90 95 19,95 100 20]
+    steps:
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip wheel setuptools
+        pip install seleniumbase==4.27.0
+        pip install supabase
+    - name: Install Chrome
+      run: |
+        sudo apt install google-chrome-stable
+    - name: Install chromedriver
+      run: |
+        seleniumbase install chromedriver
+    - name: Run Script
+      run: |
+        cd wkwk
+        python ck-proxy.py ${{ matrix.rangeIndex }}
+    - name: done
+      run: exit
