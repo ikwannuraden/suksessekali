@@ -49,7 +49,7 @@ def check_ip(sb):
         else:
             return {"status": False, "hostname": hostname, "country": country,"type": type_proxy}
     else:
-        return {"status": False, "data": ""}
+        return {"status": "Error", "data": ""}
 
 def insert_supabase(proxy, hostname, country, type, good):
     try:
@@ -76,13 +76,20 @@ def run_bot(data_proxy, index, job_number):
         try:
             is_good = check_ip(sb)
 
-            print(f"is_good {is_good}", file=sys.__stderr__)
+            # print(f"is_good {is_good}", file=sys.__stderr__)
 
             if is_good["status"]:
                 hostname = is_good["hostname"]
                 country = is_good["country"]
                 type_proxy = is_good["type"]
-                good = true
+                good = "good"
+
+                insert_supabase(proxy, hostname, country, type_proxy, good)
+            else:
+                hostname = is_good["hostname"]
+                country = is_good["country"]
+                type_proxy = is_good["type"]
+                good = "bad"
 
                 insert_supabase(proxy, hostname, country, type_proxy, good)
         except Exception as e:
