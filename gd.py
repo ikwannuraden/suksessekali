@@ -75,7 +75,7 @@ def run_bot(data_proxy, index, job_number):
     proxy = f"{proxy_ip}:{proxy_port}"
     socks = f"socks5://{proxy}"
 
-    with SB(undetectable=True, xvfb=True, proxy=proxy) as sb:
+    with SB(undetectable=True, xvfb=True, proxy=socks) as sb:
         sb.maximize_window()
         try:
             is_good = check_ip(sb)
