@@ -34,24 +34,25 @@ def load_data(start_data, end_data):
     return {"proxy": proxy}
 
 def check_ip(sb):
-    sb.uc_open_with_reconnect("https://iphub.info/",10)
-    sb.sleep(2)
+    for i in range(10):
+        sb.uc_open_with_reconnect("https://iphub.info/",10)
+        sb.sleep(2)
 
-    td_hostname = sb.is_element_present("td#hostname")
-    if td_hostname:
-        hostname = sb.get_text("td#hostname")
-        country = sb.get_text("td > span#countryName")
-        type_proxy = sb.get_text('td > span#type')
-        print(f"{hostname} , {type_proxy}", file=sys.__stderr__)
+        td_hostname = sb.is_element_present("td#hostname")
+        if td_hostname:
+            hostname = sb.get_text("td#hostname")
+            country = sb.get_text("td > span#countryName")
+            type_proxy = sb.get_text('td > span#type')
+            print(f"{hostname} , {type_proxy}", file=sys.__stderr__)
 
-        sb.sleep(50)
+            sb.sleep(50)
 
-        if "Good IP" in type_proxy:
-            return {"status": True, "hostname": hostname, "country": country,"type": type_proxy}
+            if "Good IP" in type_proxy:
+                return {"status": True, "hostname": hostname, "country": country,"type": type_proxy}
+            else:
+                return {"status": False, "hostname": hostname, "country": country,"type": type_proxy}
         else:
-            return {"status": False, "hostname": hostname, "country": country,"type": type_proxy}
-    else:
-        return {"status": "Error", "data": ""}
+            return {"status": "Error", "data": ""}
 
 def insert_supabase(proxy, hostname, country, type, good):
     try:
